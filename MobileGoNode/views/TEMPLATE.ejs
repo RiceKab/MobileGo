@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('fragments/htmlhead', {} ); %>
+  <title>Mobile Go - Login</title>
+</head>
+<body>
+<div data-role="page" id="loginpage">
+  <header data-role="header">
+    <a href="#MYNAVPANEL" class="ui-btn ui-nodisc-icon ui-icon-bars ui-corner-all ui-btn-icon-notext ui-alt-icon"
+       data-theme="b"></a>
+    <h2>Mobile Go - Login</h2>
+  </header>
+  <div role="main" class="ui-content">
+    <!-- TODO: CONTENT HERE -->
+  </div>
+
+  <%- include('fragments/pagefooter', {} ); %>
+  <%- include('fragments/navdrawer', { panelid: 'MYNAVPANEL', loggedIn: loggedIn, username: username } ); %>
+</div>
+
+<%- include('fragments/scripts_common', {} ); %>
+</body>
+</html>

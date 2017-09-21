@@ -1,0 +1,10 @@
+This project uses the MIT license (see LICENSE file).
+
+Third party libraries and resources with their their corresponding licenses:
+
+jquery - MIT License
+jquerymobile - MIT License
+nodejs & middleware - MIT License
+wgo.js - MIT License
+
+"Go icon" from freepik/flaticon - CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)

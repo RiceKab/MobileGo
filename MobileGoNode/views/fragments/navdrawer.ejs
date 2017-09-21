@@ -1,0 +1,18 @@
+  <!-- navdrawer.ejs -->
+  <div data-role="panel" id="<%= panelid %>" data-position="left" data-display="overlay"
+          class="ui-panel ui-panel-position-left ui-panel-display-overlay ui-panel-animate ui-panel-closed">
+    <div class="ui-panel-inner">
+      <h2>Mobile GO</h2>
+      <hr>
+      <a href="/" class="ui-btn ui-corner-all ui-icon-home ui-btn-icon-left">Play</a>
+      <a href="/about" class="ui-btn ui-corner-all ui-icon-info ui-btn-icon-left">About</a>
+      <a href="/learn" class="ui-btn ui-corner-all ui-icon-edit ui-btn-icon-left">Learn</a>
+      <hr>
+      <h2>Logged in as: <%= username %></h2>
+      <% if(loggedIn){ %>
+        <a href="/login/doLogout" class="ui-btn ui-corner-all ui-icon-user ui-btn-icon-left">Logout</a>
+      <% } else { %>
+        <a href="/login" class="ui-btn ui-corner-all ui-icon-user ui-btn-icon-left">Login</a>
+      <% } %>
+    </div>
+  </div>

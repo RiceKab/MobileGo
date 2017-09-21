@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('fragments/htmlhead', {} ); %>
+  <title>Mobile Go - Play</title>
+</head>
+<body>
+<!-- MAIN MENU PAGE -->
+<div data-role="page" id="menupage">
+  <header data-role="header">
+    <a href="#playnavpanel" class="ui-btn ui-nodisc-icon ui-icon-bars ui-corner-all ui-btn-icon-notext ui-alt-icon"
+            data-theme="b"></a>
+    <h2>Mobile Go - Play</h2>
+  </header>
+  <div role="main" class="ui-content">
+    <div data-role="collapsibleset" data-theme="a" data-content-theme="a" data-inset="false">
+      <section data-role="collapsible">
+        <h3>Local (Hot Seat)</h3>
+        <ul data-role="listview" data-inset="false">
+          <li><a id="createlocal" href="#createpage">Create Game</a></li>
+          <li><a id="loadlocal" href="#popupTodo" data-rel="popup">Load Game</a></li>
+        </ul>
+      </section>
+      <section data-role="collapsible">
+        <h3>Online (Not implemented)</h3>
+        <ul data-role="listview" data-inset="false">
+          <li><a id="createonline" href="#popupTodo" data-rel="popup">Create & Host game session</a></li>
+          <li><a id="joinonline" href="#popupTodo" data-rel="popup">Join a session</a></li>
+          <li><a id="createpbm" href="#popupTodo" data-rel="popup">Create Play By Message/Mail (Asynchronous)</a></li>
+          <li><a id="joinpbm" href="#popupTodo" data-rel="popup">Join a PBM game</a></li>
+        </ul>
+      </section>
+      <section data-role="collapsible">
+        <h3>Watch</h3>
+        <ul data-role="listview" data-inset="false">
+          <li><a id="watchreplay" href="#replaypage">Watch replay</a></li>
+          <li><a id="spectate" href="#popupTodo" data-rel="popup">Spectate</a></li>
+          <li><a id="replayrepo" href="#popupTodo" data-rel="popup">Replay Repository</a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+  <%- include('fragments/pagefooter', {} ); %>
+  <div data-role="popup" id="popupTodo" class="ui-content">
+    <p>This feature is currently unavailable.</p>
+  </div>
+  <%- include('fragments/navdrawer', { panelid: 'playnavpanel', loggedIn: loggedIn, username: username } ); %>
+</div>
+<!-- CREATE GAME PAGE -->
+<div data-role="page" id="createpage">
+  <header data-role="header">
+    <a href="#createpanel" class="ui-btn ui-nodisc-icon ui-icon-bars ui-corner-all ui-btn-icon-notext ui-alt-icon"
+       data-theme="b"></a>
+    <h2>Mobile Go - Create Game</h2>
+  </header>
+  <div role="main" class="ui-content">
+    <form id="createGameForm" method="get" action="#noaction">
+      <fieldset data-role="controlgroup">
+        <legend>Scoring system</legend>     <!-- Line breaks cause weird whitespace -->
+          <input type="radio" name="scoring-rules" id="rules-area" value="chinese" checked="checked"><label
+                  for="rules-area">Chinese rules (Area)</label><input type="radio" name="scoring-rules" id="rules-territory" value="korean"><label
+                  for="rules-territory">Japanese/Korean rules (Territory)</label><input type="radio" name="scoring-rules" id="rules-american" value="aga"><label
+                  for="rules-american">American Go Association</label><input disabled="true" type="radio" name="scoring-rules" id="rules-custom" value="custom"><label
+                  for="rules-custom">Custom rules...</label>
+      </fieldset>
+      <fieldset data-role="controlgroup">
+        <legend>Board size</legend>
+          <input type="radio" name="board-size" id="size-19" value="19" checked="checked"><label
+                  for="size-19">19 by 19 (Standard)</label><input
+                  type="radio" name="board-size" id="size-13" value="13"><label
+                  for="size-13">13 by 13</label><input type="radio" name="board-size" id="size-9" value="9"><label
+                  for="size-9">9 by 9 (Recommended for beginners)</label>
+      </fieldset>
+      <a id="backButton" type="button" href="/"
+             class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left">Go back</a>
+      <a id="createGameButton" href="#gamepage" type="button"
+             class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-icon-carat-r ui-btn-icon-right">Continue</a>
+      </form>
+  </div>
+  <%- include('fragments/pagefooter', {} ); %>
+  <%- include('fragments/navdrawer', { panelid: 'createpanel', loggedIn: loggedIn, username: username } ); %>
+</div>
+<!-- GAME PAGE -->
+<div data-role="page" id="gamepage">
+  <header data-role="header">
+    <a href="#gamenavpanel" class="ui-btn ui-nodisc-icon ui-icon-bars ui-corner-all ui-btn-icon-notext ui-alt-icon"
+       data-theme="b"></a>
+    <h2>Mobile Go</h2>
+  </header>
+  <div role="main" class="ui-content">    <!-- TODO: ui-content potentially messes with html5 canvas -->
+    <h3 id="scoreHeader">FirstName (Score) - SecondName (Score)</h3>
+    <div id="board">
+      <!-- Board initializes here -->
+    </div>
+    <a id='gameEndLink' href="#gameEndDialog" data-rel="popup" data-transition="pop" class="mogo-hidden"></a>
+    <button id="passAction">Pass</button>
+  </div>
+  <%- include('fragments/pagefooter', {} ); %>
+  <%- include('fragments/navdrawer', { panelid: 'gamenavpanel', loggedIn: loggedIn, username: username } ); %>
+  <div data-role="popup" id="gameEndDialog">
+    <h2>Game ended!</h2>
+  </div>
+</div>
+<!-- GAME PAGE -->
+<div data-role="page" id="replaypage">
+  <header data-role="header">
+    <a href="#replaynavpanel" class="ui-btn ui-nodisc-icon ui-icon-bars ui-corner-all ui-btn-icon-notext ui-alt-icon"
+       data-theme="b"></a>
+    <h2>Mobile Go</h2>
+  </header>
+  <div role="main" class="ui-content">    <!-- TODO: ui-content potentially messes with html5 canvas -->
+    <h3 id="replayScoreHeader">FirstName (Score) - SecondName (Score)</h3>
+    <div id="replayboard">
+      <!-- Board initializes here -->
+    </div>
+    <a href="" id="replayUndo" class="ui-btn ui-icon-carat-l ui-btn-icon-notext ui-corner-all ui-btn-inline">Prev</a>
+    <h3 id="moveCounter" style="display: inline-block"></h3>
+    <a href="" id="replayNext" class="ui-btn ui-icon-carat-r ui-btn-icon-notext ui-corner-all ui-btn-inline">Next</a>
+  </div>
+  <%- include('fragments/pagefooter', {} ); %>
+  <%- include('fragments/navdrawer', { panelid: 'replaynavpanel', loggedIn: loggedIn, username: username } ); %>
+</div>
+<%- include('fragments/scripts_common', {} ); %>
+<script src="/assets/lib/wgo/wgo.js"></script>
+<script src="/assets/lib/socket.io.js"></script>
+<script src="/assets/js/game.js"></script>
+<script src="/assets/js/index.js"></script>
+</body>
+</html>

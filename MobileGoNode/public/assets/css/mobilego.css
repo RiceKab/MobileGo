@@ -1,0 +1,20 @@
+body {
+  padding: 20px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.ui-icon-learn:after {
+    background-image: url("/assets/res/icons/learn.svg");
+}
+/* Fallback */
+.ui-nosvg .ui-icon-learn:after {
+    background-image: url("/assets/res/icons/learn.png");
+}
+
+.mogo-hidden {
+    display: none
+}
